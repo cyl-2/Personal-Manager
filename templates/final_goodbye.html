@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <div>
+        <p> Account deleted successfully :(
+            <br> I seriously can't believe you deleted the account... <br>
+            Like P L E A S E, your reason for deleting the account was "{{ reason }}" <br>
+            That's one wack reason if I have to be honest :/</p>
+
+        <p> You will be redirected to the homepage in 10 seconds. </p>
+    </div>
+
+    <script>
+        setTimeout(function(){
+        window.location.href ="{{ ( url_for('index') ) }}";
+        }, 10000);
+    </script>
+{% endblock %}

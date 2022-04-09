@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1>Register</h1> 
+    <h2> Sign up below </h2>
+    <form action="" method="post" novalidate> 
+        {{ form.hidden_tag() }}
+        {{ form.email.label }}
+        {{ form.email(class="text") }}
+        {% for error in form.email.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.username.label }}
+        {{ form.username(class="text") }}
+        {% for error in form.username.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.password.label }}
+        {{ form.password(class="text") }}
+        {% for error in form.password.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.password2.label }}
+        {{ form.password2(class="text") }}
+        {% for error in form.password2.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.accept_rules.label }}
+        {{ form.accept_rules() }} 
+        {% for error in form.accept_rules.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        <a href="{{ ( url_for('terms') ) }}">Read more about our terms and conditions</a>
+        <br>
+        {{ form.submit(class="submit") }}
+    </form>   
+
+    <p> Do you already have an account? <br> Then login instead! </p>
+    <div> <a href="{{ ( url_for('login') ) }}"> Login to your account </a> </div>
+{% endblock %}

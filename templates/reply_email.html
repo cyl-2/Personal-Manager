@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1> Read/Reply </h1>
+
+    <h2> Query </h2>
+    <p> Name: {{ query ["name"] }}
+        <br> Email: {{ query ["email"] }}
+    <br> Message: {{ query ["message"] }}
+    <br> <a href="{{ url_for('delete_query', id=query['query_id']) }}"> Delete message </a> (Only delete the message after you respond to the query!)</p>
+
+    <h2> Reply below </h2>    
+    <form action="" method="post" novalidate> 
+        {{ form.hidden_tag() }}
+        {{ form.email(class="text", placeholder="Recipient email address", value=query['email']) }}
+        <br>
+        {{ form.subject(class="text", placeholder="Enter in recipient's subject", value=query['subject']) }}
+        <br>
+        {{ form.message(rows='10',cols='100', placeholder="Write reply here") }}
+        <br>
+        {{ form.submit(class="submit") }}
+    </form>
+
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p> {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>    
+{% endblock %}

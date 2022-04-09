@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1>Goodbye</h1>
+    <form action="" method="post" novalidate> 
+        {{ form.hidden_tag() }}
+        {{ form.reason.label }}
+        {{ form.reason(class="text") }}
+        {% for error in form.reason.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.password.label }}
+        {{ form.password(class="text") }}
+        {% for error in form.password.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.password2.label }}
+        {{ form.password2(class="text") }}
+        {% for error in form.password2.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.submit(class="submit") }}
+     </form>
+{% endblock %}

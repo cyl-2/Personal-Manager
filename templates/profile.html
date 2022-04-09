@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1>Your Profile</h1>
+    <p> Welcome back sweetheart!
+        <br>
+        How are you today ? :)
+    </p>
+    <div>
+        <a href="{{ ( url_for('task_manager') ) }}"> Add a task </a>
+        <a href="{{ ( url_for('my_diary') ) }}"> Write a diary entry </a>
+    </div> 
+
+    <h2> Your details </h2> 
+    <p> Username : {{ g.user }} <br>
+        Email : {{ user["email"] }}<br>
+    <a href="{{ ( url_for('change_password') ) }}"> Change password </a> <br>
+    <a href="{{ ( url_for('delete_acc') ) }}"> Delete account </a></p>
+
+    <!-- Copied some of the HTML and Javascript related to the pop up window from https://www.gitto.tech/posts/simple-popup-box-using-html-css-and-javascript/ -->
+    <div class="popup" id="popup-1">
+        <div class="content">
+            <div class="close-btn" onclick="togglePopup()">&times;</div>
+            <p> Survey will take no more than 5 minutes to complete
+                <br> <a href="{{ ( url_for('survey') ) }}"> Take part in the survey!</a></p>
+        </div>
+    </div>
+
+    <div id = "survey"><p> Help us make our website better by participating in this survey!</p> 
+        <button onclick="togglePopup()">Enter Survey</button> </div>
+
+    <script> 
+    function togglePopup(){
+        document.getElementById("popup-1").classList.toggle("active");
+      }
+    </script>         
+{% endblock %}

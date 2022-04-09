@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1>Dear Diary...</h1> 
+    <form action="" method="post" novalidate> 
+        {{ form.hidden_tag() }}
+        {{ form.date.label }}
+        {{ form.date(class="text") }}
+        {% for error in form.date.errors %}
+            {{ error }}
+        {% endfor %}
+        {{ form.title.label }}
+        {{ form.title(class="text", placeholder="Add a title") }}
+        {% for error in form.title.errors %}
+            {{ error }}
+        {% endfor %}
+        {{ form.weather.label }}
+        {{ form.weather(class="text", placeholder="Is it sunny today?") }}
+        {% for error in form.weather.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.entry.label }}
+        <br>
+        {{ form.entry(rows='10',cols='100') }}
+        {% for error in form.entry.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.submit(class="submit") }}
+     </form>   
+
+     <div class="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p> {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>    
+
+    {% if diary %}
+    <table>
+        <caption> My diary </caption>
+        <tr>
+            <th> Date </th>
+            <th> Diary title </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        {% for entry in diary %}
+        <tr> 
+            <td> {{ entry ["date"] }} </td>
+            <td> {{ entry ["title"] }} </td>
+            <td> <a href="{{ url_for('show_diary', id=entry['entry_id']) }}"> Read diary </a> </td> 
+            <td> <a href="{{ url_for('delete_diary', id=entry['entry_id']) }}"> Delete </a> </td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <p> Your diary is so empty and lonely...don't be shy and write a diary entry today :)</p> 
+        {% endif %}
+    </table>  
+{% endblock %}

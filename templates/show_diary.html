@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    
+    <h1> {{ entry ["title"] }} </h1>
+    <h2> Date: {{ entry ["date"] }} <br> Weather: {{ entry ["weather"] }} </h2>
+    <p> {{ entry ["entry"] }} </p>
+
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p> {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>    
+    
+    <div> <a href="{{ url_for('my_diary') }}"> Go back </a>
+        <a href="{{ url_for('edit_diary', id=entry['entry_id']) }}"> Edit </a>
+         <a href="{{ url_for('delete_diary', id=entry['entry_id']) }}"> Delete </a>
+    </div>
+{% endblock %}

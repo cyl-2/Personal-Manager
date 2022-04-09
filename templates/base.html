@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+     <meta charset="utf-8" />
+     <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+        <title> {{ title }} </title>
+    </head>
+
+    <nav>
+        {% if g.user == "admin" %}
+        <a href="{{ ( url_for('admin') ) }}"> Home </a>
+        <a href="{{ ( url_for('logout') ) }}"> Logout </a>
+        {% elif g.user %}
+        <a href="{{ ( url_for('profile') ) }}"> Home </a> 
+        <a href="{{ ( url_for('task_manager') ) }}"> Task Manager </a>
+        <a href="{{ ( url_for('my_diary') ) }}"> Diary </a>
+        <a href="{{ ( url_for('contact_us') ) }}"> Contact us</a>
+        <a href="{{ ( url_for('logout') ) }}"> Logout </a>
+        {% else %}
+        <a href="{{ ( url_for('index') ) }}"> Home </a>
+        <a href="{{ ( url_for('registration') ) }}"> Register </a>
+        <a href="{{ ( url_for('login') ) }}"> Login </a>
+        <a href="{{ ( url_for('contact_us') ) }}"> Contact us </a>
+        {% endif %}
+    </nav>
+
+    <body>
+        {% block main_content %} {% endblock %}
+    </body>
+
+    <footer> © All rights reserved <br> Chen Yu Lin </footer>
+</html>

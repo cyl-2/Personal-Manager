@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1> Survey</h1> 
+    <form action="" method="post" novalidate> 
+        {{ form.hidden_tag() }}
+        {{ form.likeness.label }}
+        {{ form.likeness(class="text") }}
+        {% for error in form.likeness.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.occurrence.label }}
+        {{ form.occurrence(class="text") }}
+        {% for error in form.occurrence.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.navigation.label }}
+        {{ form.navigation(class="text") }}
+        {% for error in form.navigation.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.feature.label }}
+        {{ form.feature(class="text") }}
+        {% for error in form.feature.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.recommend.label }}
+        {{ form.recommend(class="text") }}
+        {% for error in form.recommend.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.submit(class="submit") }}
+     </form>   
+
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p> {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>    
+{% endblock %}

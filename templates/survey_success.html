@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1>Successful Submission!</h1>
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p> {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>  
+    
+    <p> Thank you for giving us 5 minutes of your time.
+        <br>
+        Please wait a few seconds, I'm now working very hard to bring you back to your profile page
+    </p>
+
+    <!-- Got the javascript from: https://stackoverflow.com/questions/48049300/page-redirect-after-x-seconds-wait-using-flask-python-jinja -->
+    
+    <script>
+        setTimeout(function(){
+           window.location.href ="{{ ( url_for('profile') ) }}";
+        }, 5000);
+    </script>
+{% endblock %}

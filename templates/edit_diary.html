@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1>Edit Diary</h1>
+    <form action="" method="post" novalidate> 
+        {{ form.hidden_tag() }}
+
+        {{ form.date.label }}
+        {{ form.date(class="text") }}
+        {% for error in form.date.errors %}
+            {{ error }}
+        {% endfor %}
+
+        {{ form.title.label }}
+        {{ form.title(value=entry['title'], class="text") }}
+        {% for error in form.title.errors %}
+            {{ error }}
+        {% endfor %}
+
+        {{ form.weather.label }}
+        {{ form.weather(value=entry['weather'],class="text") }}
+        {% for error in form.weather.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.entry.label }}
+        <br>
+        {{ form.entry(rows='10',cols='100') }}
+        {% for error in form.entry.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.submit(class="submit") }}
+    </form>  
+
+    <div> <a href="{{ url_for('my_diary') }}"> Go back without saving anything </a> </div>
+{% endblock %}

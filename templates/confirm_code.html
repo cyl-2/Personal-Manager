@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1> Confirm code </h1>
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p> {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>    
+    <form action="" method="post" novalidate> 
+        {{ form.hidden_tag() }}
+        {{ form.code.label }}
+        {{ form.code(class="text") }}
+        {% for error in form.code.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.submit(class="submit") }}
+    </form>
+{% endblock %}

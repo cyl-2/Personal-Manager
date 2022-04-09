@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1> Welcome back admin </h1>
+
+    <div> <a href = "{{ url_for('survey_results') }}"> Survey results </a> </div>
+
+    {% if queries %}
+    <table>
+        <tr> 
+            <th> Date received </th>
+            <th> Name </th>
+            <th> Email </th>
+            <th> Subject </th>
+            <th>  </th>
+        </tr>
+
+        {% for query in queries %}
+        <tr> 
+            <td> {{ query ["date"] }} </td>
+            <td> {{ query ["name"] }} </td>
+            <td> {{ query ["email"] }} </td>
+            <td> {{ query ["subject"] }} </td>
+            <td> <a href = "{{ url_for('reply_email', id=query['query_id']) }}"> Reply to email </a>
+                <br><a href="{{ url_for('delete_query', id=query['query_id']) }}"> Delete message </a></td> 
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <p> No messages for now </p>
+    {% endif %}
+    </table>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<div> 
+{% if g.user %}
+    <p> Oh no! Something went terribly wrong. 
+        <br> I will redirect you to your profile page.
+        <br>
+    Please wait a few seconds! </p> 
+
+    <script>
+        setTimeout(function(){
+           window.location.href ="{{ ( url_for('profile') ) }}";
+        }, 3000);
+    </script>
+{% else %}
+    <p> Oh no! Something went terribly wrong.
+        <br> I will redirect you to the home page.
+        <br>
+        Please wait a few seconds! </p>
+
+    <script>
+        setTimeout(function(){
+            window.location.href ="{{ ( url_for('index') ) }}";
+        }, 3000);
+    </script>
+
+{% endif %}
+</div>
+{% endblock %}

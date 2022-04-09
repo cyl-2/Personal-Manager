@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1> Contact Us </h1> 
+    <p> If you have any queries, do send us a message! </p>
+    <form action="" method="post" novalidate> 
+        {{ form.hidden_tag() }}
+        {{ form.email(class="text", placeholder="Your email address") }}
+        <br>
+        {{ form.name(class="text", placeholder="Your name") }}
+        <br>
+        {{ form.subject(class="text", placeholder="Subject") }}
+        <br>
+        {{ form.message(rows='10',cols='100', placeholder="Write your message here") }}
+        <br>
+        {{ form.submit(class="submit") }}
+    </form>
+
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p> {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>    
+{% endblock %}

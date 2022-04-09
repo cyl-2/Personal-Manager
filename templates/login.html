@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block nav %}
+    <a href="{{ ( url_for('index') ) }}">  Return to home </a>
+{% endblock %}
+
+{% block main_content %}
+    <h1>Login</h1> 
+    <h2> Login below </h2>
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p> {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>    
+    <form action="" method="post" novalidate> 
+        {{ form.hidden_tag() }}
+        {{ form.username.label }}
+        {{ form.username(class="text") }}
+        {% for error in form.username.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.password.label }}
+        {{ form.password(class="text") }}
+        {% for error in form.password.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.password2.label }}
+        {{ form.password2(class="text") }}
+        {% for error in form.password2.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        <a href="{{ ( url_for('forgot_password') ) }}"> Forgot password? </a>
+        <br>
+        {{ form.submit(class="submit") }}
+    </form>   
+
+    <p> You...don't have an account yet? That's too bad :( buuuuuut it's ok! <br>
+        Sign up by clicking the link below :) </p>
+
+    <div> <a href="{{ ( url_for('registration') ) }}"> Sign up here </a> </div>
+{% endblock %}

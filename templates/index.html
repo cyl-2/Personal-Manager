@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1> Welcome </h1>
+    <p> This website contains a task manager and a diary which you can access by making an account!</p>
+    <p> Why use a task manager? 
+        <ul>
+            <li> Perfect for busy schedules. </li> 
+            <li> Helps you stay organised and on track. </li>
+            <li> Provides a clear and tidy list of what tasks you need to do.</li>
+        </ul>
+    </p>
+    <p> Why keep a diary? 
+        <ul>
+            <li> It helps to improve your writing. </li> 
+            <li> You can record memorable events and memories. </li>
+            <li> Improves self-awareness and your well-being.</li>
+        </ul>
+    </p>    
+
+    <p> Register or sign in below to access your account </p> 
+    <div> <a href="{{ ( url_for('registration') ) }}"> Register </a>
+        <a href="{{ ( url_for('login') ) }}"> Login </a> </div>
+
+    <h2> A little snippet of what you can access once you make an account... </h2>
+    <div id="teaser">
+        <section> 
+            <h3> Task Manager </h3>
+            <form action="" method="post" novalidate> 
+                {{ form.hidden_tag() }}
+                {{ form.task.label }}
+                <br>
+                {{ form.task(rows='5',cols='40') }}
+                <br>
+                {{ form.location.label }}
+                {{ form.location(class="text") }}
+                <br>
+                {{ form.task_date.label }}
+                {{ form.task_date(class="text") }}
+                <br>
+                {{ form.submit(disabled=True, class="submit") }}
+            </form>
+            <p> To add a task, you must <a href="{{ ( url_for('registration') ) }}">sign up</a> for an account :) </p>
+        </section>
+
+        <section>
+            <h3> Dear Diary... </h3>
+            <form action="" method="post" novalidate> 
+                {{ form2.hidden_tag() }}
+                {{ form2.date.label }}
+                {{ form2.date(class="text") }}
+                {{ form2.title.label }}
+                {{ form2.title(class="text") }}
+                {{ form2.weather.label }}
+                {{ form2.weather(class="text") }}
+                <br>
+                {{ form2.entry.label }}
+                <br>
+                {{ form2.entry(rows='10',cols='100') }}
+                <br>
+                {{ form2.submit(disabled=True, class="submit") }}
+            </form>
+            <p> To add a diary entry, you must <a href="{{ ( url_for('registration') ) }}">sign up</a> for an account :) </p>
+        </section>
+    </div>
+    <div> <a href="{{ ( url_for('registration') ) }}"> Sign up today to access your free account</a></div>
+{% endblock %}

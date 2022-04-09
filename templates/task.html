@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1>Task Manager</h1> 
+
+    <p> Add a task below! </p>
+    <form action="" method="post" novalidate> 
+        {{ form.hidden_tag() }}
+        {{ form.task.label }}
+        <br>
+        {{ form.task(rows='5',cols='40') }}
+        {% for error in form.task.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.location.label }}
+        {{ form.location(class="text") }}
+        {% for error in form.location.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.task_date.label }}
+        {{ form.task_date(class="text") }}
+        {% for error in form.task_date.errors %}
+            {{ error }}
+        {% endfor %}
+        <br>
+        {{ form.submit(class="submit") }}
+    </form>
+
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p> {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>    
+
+    {% if tasks %}
+    <p>Wow...you have things to do! Don't be lazy and finish them asap. </p> 
+
+    <table>
+        <caption> Your current tasks</caption>
+        <tr>
+            <th> Task </th>
+            <th> Location</th>
+            <th> Date of task </th>
+            <th> </th>
+        </tr>
+        {% for task in tasks %}
+        <tr> 
+            <td> {{ task ["task"] }} </td>
+            <td> {{ task ["location"] }} </td>
+            <td> {{ task ["task_date"] }} </td>
+            <td>
+                <a href="{{ url_for('delete_task', id=task['task_id']) }}"> Delete </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+     
+    {% else %}
+    <p> No tasks at the moment, you are very free and you have way too much time 
+        on your hands so you should definitely add a task to your task manager. </p>
+    {% endif %}
+{% endblock %}

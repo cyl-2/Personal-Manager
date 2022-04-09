@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1> Survey Results </h1>
+    <p> The results of the survey are listed below. 
+    <br> <b> {{ total_users }} users </b> participated in the survey. </p> 
+
+    <h3> User satifaction </h3> 
+    <p> {{ like_website }}% of users like the website.
+        <br> {{ dislike_website }}% of users <b> don't </b> like the website.
+        <br> Depending on their mood, {{ like_website_depends_on_mood }}% of users like the website occasionally.  </p>
+    
+    <h3> User frequency </h3>
+    <p> {{ daily }}% of users use the website daily. 
+        <br> {{ sometimes }}% of users use the website three times a week.
+        <br> {{ occasional }}% of users use the website twice a month.
+        <br> {{ yearly }}% of users use the website once a year.
+    </p>
+    
+    <h3> Navigation </h3>  
+    <p> {{ easy_to_navigate }}% of users find the website easy to navigate.
+        <br> {{ easy_to_navigate_than_socks }}% of users find the website easier to navigate than their lost socks! 
+        <br> {{ hard_to_navigate }}% of users find the website hard to navigate. </p>
+
+    <h3> User's favorite features </h3>  
+    <p> {{ feature_task }}% of users like the task manager feature more than the diary feature.
+        <br> {{ feature_diary }}% of users like the diary feature more than the task manager feature. 
+        <br> {{ feature_sucks }}% of users think both features suck.</p>
+
+    <h3> User Recommendation </h3>  
+    <p> {{ recommend_yes }}% of users would recommend the website to their family/friends.
+        <br> {{ recommend_no }}% of users would <b>not</b> recommend the website to their family/friends.
+        <br> {{ recommend_never }}% of users would <b>never</b> recommend the website to their family/friends.</p>
+{% endblock %}
