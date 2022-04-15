@@ -32,7 +32,7 @@ mail= Mail(app)
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'no.reply.please.and.thank.you@gmail.com'
-app.config['MAIL_PASSWORD'] = 'justanemailformyflaskapp'
+app.config['MAIL_PASSWORD'] = 'im_not_telling_you'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail.init_app(app)
